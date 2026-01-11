@@ -1,0 +1,14 @@
+[Unit]
+Description=OMEGA PLOUTUS X ecoATM Auto-Deployment Service
+After=network.target NetworkManager.service
+Wants=NetworkManager.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /opt/omega/ecosystem_autostart.sh
+RemainAfterExit=yes
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

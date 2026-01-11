@@ -1,0 +1,83 @@
+# OMEGA-PLOUTUS LINUX CROSS-COMPILATION MAKEFILE
+# ================================================
+#
+# This makefile compiles OMEGA-PLOUTUS for Linux systems
+# Requires cross-compilation tools or native Linux compilation
+#
+# USAGE:
+#   make -f Makefile.linux          # Compile everything
+#   make -f Makefile.linux clean    # Clean build files
+#   make -f Makefile.linux test     # Run tests
+#
+
+CC = gcc
+CFLAGS = -Wall -Wextra -O2 -pthread -ldl
+LDFLAGS = -pthread -ldl
+TARGET = omega_ploutus_ai_integration
+SOURCES = omega_ploutus_ai_integration_linux.c
+OBJECTS = $(SOURCES:.c=.o)
+
+# Linux-specific libraries
+LIBS = -ldl -pthread
+
+.PHONY: all clean test install
+
+all: $(TARGET)
+
+$(TARGET): $(OBJECTS)
+	@echo "🔨 Linking OMEGA-PLOUTUS Linux binary..."
+	$(CC) $(OBJECTS) -o $(TARGET) $(LDFLAGS) $(LIBS)
+	@echo "✅ OMEGA-PLOUTUS Linux compilation complete!"
+
+%.o: %.c
+	@echo "📦 Compiling $< for Linux..."
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	@echo "🧹 Cleaning Linux build files..."
+	rm -f $(OBJECTS) $(TARGET)
+	@echo "✅ Clean complete"
+
+test: $(TARGET)
+	@echo "🧪 Testing OMEGA-PLOUTUS Linux functionality..."
+	@echo "⚠️  NOTE: Full testing requires root privileges and ATM hardware"
+	@echo "💡 Basic compilation test passed - binary created successfully"
+	./$(TARGET) --help 2>/dev/null || echo "Binary created - run with: sudo ./$(TARGET)"
+
+install: $(TARGET)
+	@echo "📦 Installing OMEGA-PLOUTUS to system..."
+	sudo cp $(TARGET) /usr/local/bin/
+	sudo chmod +x /usr/local/bin/$(TARGET)
+	@echo "✅ OMEGA-PLOUTUS installed to /usr/local/bin/"
+
+# Development targets
+debug: CFLAGS += -g -DDEBUG
+debug: clean all
+
+static: LDFLAGS += -static
+static: clean all
+
+.PHONY: help
+help:
+	@echo "OMEGA-PLOUTUS Linux Makefile"
+	@echo "============================"
+	@echo ""
+	@echo "Targets:"
+	@echo "  all       - Build OMEGA-PLOUTUS Linux binary"
+	@echo "  clean     - Remove build files"
+	@echo "  test      - Test compilation and basic functionality"
+	@echo "  install   - Install binary to /usr/local/bin"
+	@echo "  debug     - Build with debug symbols"
+	@echo "  static    - Build static binary"
+	@echo "  help      - Show this help"
+	@echo ""
+	@echo "Requirements:"
+	@echo "  - GCC compiler"
+	@echo "  - Linux development headers"
+	@echo "  - PCSC-Lite (for smart card support)"
+	@echo "  - Root privileges for installation/testing"
+	@echo ""
+	@echo "Example usage:"
+	@echo "  make -f Makefile.linux all"
+	@echo "  sudo make -f Makefile.linux install"
+	@echo "  sudo make -f Makefile.linux test"

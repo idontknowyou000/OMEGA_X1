@@ -1,0 +1,10 @@
+{
+  "wallet_name": "OMEGA_DEPLOYMENT_WALLET",
+  "wallet_address": "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+  "balance": 0.0,
+  "transactions": [],
+  "created": "Tue 12/30/2025 13:24:39.48",
+  "last_updated": "Tue 12/30/2025 13:24:39.48",
+  "status": "active",
+  "encryption": "aes-256"
+}

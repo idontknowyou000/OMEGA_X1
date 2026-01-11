@@ -1,0 +1,99 @@
+# OMEGA PLOUTUS X .gitignore
+# Exclude sensitive files and build artifacts
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Logs and sensitive data
+*.log
+omega_*.log
+professional_proxy.log
+badass_proxy.log
+*_proxy.log
+
+# Build artifacts
+*.exe
+*.dll
+*.so
+*.dylib
+*.o
+*.a
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+.tmp/
+
+# Network configuration (may contain sensitive info)
+nmcli_*.conf
+wifi_*.conf
+
+# Attack artifacts
+attack_results/
+captured_data/
+exfiltrated_files/
+
+# Repository-specific ignores
+.git/
+*/.git/
+*/.gitignore
+
+# Large data files
+*.iso
+*.img
+*.vmdk
+*.qcow2
+
+# Sensitive configuration
+config/secrets.json
+config/private_keys/
+*.key
+*.pem
+*.crt
+
+# Development artifacts
+debug.log
+test_results/
+coverage.xml
+.pytest_cache/
+
+# Distribution
+*.tar.gz
+*.zip
+*.rar

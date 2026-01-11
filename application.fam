@@ -1,0 +1,6 @@
+id = omega_ploutus
+name = Omega Ploutus
+description = Demo Flipper Zero app for Omega Ploutus.
+author = Your Name
+entry_point = omega_ploutus_app_entrypoint
+version = 1.0.0
